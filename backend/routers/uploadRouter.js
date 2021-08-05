@@ -9,7 +9,7 @@ const storage=multer.diskStorage({
         cb(null,'uploads/');
     },
     filename(req,file,cb){
-        cb(null,`${Date.now}.jpg`);
+        cb(null,`${Date.now()}.jpg`);
     }
 });
 const upload=multer({storage});
