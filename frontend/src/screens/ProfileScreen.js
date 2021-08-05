@@ -11,6 +11,10 @@ export default  function ProfileScreen(){
    const [password,setPassword]=useState('');
    const [confirmPassword,setConfirmPassword]=useState('');
 
+   const [sellerName,setSellerName]=useState('');
+   const [sellerLogo,setSellerLogo]=useState('');
+   const [sellerDescription,setSellerDescription]=useState('');
+
     const dispatch=useDispatch();
     const userSignin=useSelector(state=>state.userSignin);
     const {userInfo}=userSignin;
@@ -24,15 +28,19 @@ export default  function ProfileScreen(){
        // dispatch({type:})
        dispatch({type:USER_UPDATE_PROFILE_RESET})
         dispatch(detailsUser(userInfo._id));
-
        }
        else{
            setName(user.name);
            setEmail(user.email);
+           if(user.isSeller){
+               setSellerName(user.seller.name);
+               setSellerLogo(user.seller.logo);
+               setSellerDescription(user.seller.description);
+           }
        }
        console.log({successUpdate,errorUpdate,loadingUpdate});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[dispatch, user, userInfo]);
+   
+    },[dispatch, errorUpdate, loadingUpdate, successUpdate, user, userInfo]);
     const submitHandler=(event)=>{
         event.preventDefault();
         //TODO
@@ -40,7 +48,7 @@ export default  function ProfileScreen(){
         alert('Password and Confirm Password not matched');
         else{
             dispatch(updateUserProfile({userId:user._id,
-                name,email,password
+                name,email,password,sellerName,sellerLogo,sellerDescription
             }));
         }
     }
@@ -88,6 +96,28 @@ export default  function ProfileScreen(){
                               >
                             </input>  
                        </div>
+                          {
+                              user.isSeller &&(
+                                  <>
+                                  <h2>Seller</h2>
+                                  <div>
+                                      <label htmlFor='sellerName'>Seller Name</label>
+                                      <input id='sellerName' type='text' placeholder='Enter Seller Name'
+                                      value={sellerName} onChange={(e)=>setSellerName(e.target.value)}></input>
+                                  </div>
+                                  <div>
+                                      <label htmlFor='sellerLogo'>Seller Logo</label>
+                                      <input id='sellerLogo' type='text' placeholder='Enter Seller Logo'
+                                      value={sellerLogo} onChange={(e)=>setSellerLogo(e.target.value)}></input>
+                                  </div>
+                                  <div>
+                                      <label htmlFor='sellerDescription'>Seller Description</label>
+                                      <input id='sellerDescription' type='text' placeholder='Enter Seller Name'
+                                      value={sellerDescription} onChange={(e)=>setSellerDescription(e.target.value)}></input>
+                                  </div>
+                                  </>
+                              )
+                          }
                       <div>
                           <label/>
                           <button className='primary' type='submit'>

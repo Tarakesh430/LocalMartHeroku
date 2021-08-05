@@ -12,7 +12,7 @@ const HomeScreen=()=>{
 
 
   useEffect(()=>{
-   dispatch(listProducts());
+   dispatch(listProducts({}));
    dispatch(listShops());
    dispatch(detailsShop("60d76672b1ae6928f8404bb5"));
   },[dispatch])

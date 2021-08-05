@@ -4,7 +4,7 @@ import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/orderReducers';
 import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productUpdateReducer } from './reducers/productReducers';
 import { shopDetailsReducer, shopListReducer } from './reducers/shopReducers';
-import {userSignInReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer } from './reducers/userReducers';
+import {userSignInReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers';
 
 const initialState={
     cart:{paymentMethod:'PayPal',
@@ -32,6 +32,8 @@ const reducer=combineReducers({
     orderDelete:orderDeleteReducer,
     orderDeliver:orderDeliverReducer,
     userList:userListReducer,
+    userDelete:userDeleteReducer,
+    userUpdate:userUpdateReducer,
     shopList:shopListReducer,
     shopDetails:shopDetailsReducer,
     

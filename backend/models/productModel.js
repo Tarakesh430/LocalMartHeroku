@@ -10,7 +10,7 @@ const productSchema=new mongoose.Schema({
     countInStock:{type:Number,default:0,required:true},
     rating:{type:Number,default :0,required:true},
     numReviews:{type:Number,default:0,required:true},
-    
+    seller:{type:mongoose.Schema.Types.ObjectId}
 
 },{
     timestamps:true,

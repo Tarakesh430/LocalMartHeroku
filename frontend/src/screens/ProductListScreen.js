@@ -5,7 +5,10 @@ import { createProduct, deleteProduct, listProducts } from '../actions/productAc
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../Constants/productConstants';
+import { userUpdateReducer } from '../reducers/userReducers';
     export default function ProductListScreen(props){
+            const sellerMode=props.match.path.indexOf('/seller')>=0;
+
             const productList=useSelector(state=>state.productList);
             const {loading,error,products}=productList;
             const dispatch=useDispatch();
@@ -17,8 +20,10 @@ import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../Constants/product
            const productDelete=useSelector(state=>state.productDelete);
            const {loading:loadingDelete,error:errorDelete,success:successDelete}=productDelete;
            
+           const userSignin=useSelector(state=>state.userSignin);
+           const {userInfo}=userSignin;
            useEffect(()=>{
-               dispatch(listProducts());
+               dispatch(listProducts({seller:sellerMode?userInfo._id:''}));
                if(successCreate){
                    dispatch({type:PRODUCT_CREATE_RESET});
                    props.history.push(`/product/${createdProduct._id}/edit`);
