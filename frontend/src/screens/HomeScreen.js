@@ -22,7 +22,7 @@ const HomeScreen=()=>{
        error?<MessageBox variant='danger'>{error}</MessageBox>:
        <div className='row center'>
          {
-           console.log(typeof(products))
+           console.log(products)
          }
        {
          products && products.map(x=>(
