@@ -21,10 +21,13 @@ const HomeScreen=()=>{
        {loading?<LoadingBox></LoadingBox>:
        error?<MessageBox variant='danger'>{error}</MessageBox>:
        <div className='row center'>
+         {
+           console.log(typeof(products))
+         }
        {
-       //  products && products.map(x=>(
-        // <Product key={x._id} product={x}></Product>
-        //  ))
+         products && products.map(x=>(
+         <Product key={x._id} product={x}></Product>
+          ))
         }
        </div>}
          
