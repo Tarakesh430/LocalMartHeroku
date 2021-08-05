@@ -105,6 +105,7 @@ export const updateUser=(user)=>async(dispatch,getState)=>{
     const {data}=await Axios.put(`/api/users/${user._id}`,user,{
       headers:{Authorization:`Bearer ${userInfo.token}`}
     });
+   
     dispatch({type:USER_UPDATE_SUCCESS,payload:data});
   }catch(error){
     dispatch({type:USER_UPDATE_FAIL,
