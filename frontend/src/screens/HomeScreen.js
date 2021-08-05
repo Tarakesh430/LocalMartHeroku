@@ -22,8 +22,8 @@ const HomeScreen=()=>{
        error?<MessageBox variant='danger'>{error}</MessageBox>:
        <div className='row center'>
        {
-          products.map(product=>(
-         <Product key={product._id} product={product}></Product>
+          products.map(x=>(
+         <Product key={x._id} product={x}></Product>
           ))
         }
        </div>}
